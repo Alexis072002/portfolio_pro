@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  /* Slate 950 - Deep Blue base */
+  --background: #000000;
+  /* Pure Black */
   --foreground: #f8fafc;
   /* Slate 50 */
 
   /* Semantic Colors */
-  --card: #0f172a;
-  /* Slate 900 */
-  --accent: #38bdf8;
-  /* Sky 400 */
-  --accent-muted: #3730a3;
-  /* Indigo 800 */
+  --card: #0a0a0a;
+  /* Very Deep Gray/Black */
+  --accent: #0ea5e9;
+  /* Vibrant Cyan (Sky 500) */
+  --accent-muted: #0369a1;
+  /* Deep Blue/Cyan (Sky 700) */
 }
 
 @theme inline {
@@ -23,7 +23,7 @@
   --color-accent-muted: var(--accent-muted);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
-  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-serif: var(--font-outfit), ui-serif, Georgia, serif;
 
   /* Custom Gradients */
   --background-image-mesh: radial-gradient(at 0% 0%, var(--accent-muted) 0px, transparent 55%),
