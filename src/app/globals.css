@@ -1,26 +1,60 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020617;
+  /* Slate 950 - Deep Blue base */
+  --foreground: #f8fafc;
+  /* Slate 50 */
+
+  /* Semantic Colors */
+  --card: #0f172a;
+  /* Slate 900 */
+  --accent: #38bdf8;
+  /* Sky 400 */
+  --accent-muted: #3730a3;
+  /* Indigo 800 */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* Custom Gradients */
+  --background-image-mesh: radial-gradient(at 0% 0%, var(--accent-muted) 0px, transparent 55%),
+    radial-gradient(at 100% 0%, var(--accent) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, #1e1b4b 0px, transparent 50%);
+  /* Indigo 950 */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility bg-mesh {
+  background-image: var(--background-image-mesh);
+  background-size: 200% 200%;
+  animation: mesh-flow 20s ease infinite;
+}
+
+@keyframes mesh-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  min-height: 100vh;
 }
