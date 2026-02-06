@@ -11,7 +11,7 @@ export const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }
 
     return (
         <>
-            {/* <SideNav sections={SECTIONS} activeSection={activeSection} /> */}
+            <SideNav sections={SECTIONS} activeSection={activeSection} />
             <main className="relative z-10 flex-grow">
                 {children}
             </main>

@@ -1,7 +1,5 @@
-"use client"
-
 import React, { useRef } from 'react'
-import { useScroll, useSpring } from 'framer-motion'
+import { useScroll, useSpring, motion } from 'framer-motion'
 import { HeroScrollCanvas } from '@/components/HeroScrollAnimation/HeroScrollCanvas'
 
 const HERO_FRAMES = Array.from({ length: 80 }, (_, i) =>
@@ -32,35 +30,38 @@ export default function Home() {
             <HeroScrollCanvas imageUrls={HERO_FRAMES} scrollProgress={smoothProgress} />
           </div>
 
-          {/* Text Layer (Top) - Hidden for now as requested */}
-          {/* 
-          <div className="relative z-20 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
+          {/* Text Layer (Top) */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
+            className="relative z-20 flex flex-col items-center justify-center px-4 text-center pointer-events-none"
+          >
             <h1 className="text-5xl md:text-8xl font-serif font-bold tracking-tight mb-8 leading-[1.05] text-white">
               Designing for <span className="text-accent italic">Usage</span>.
               <br />
               Coding for <span className="text-accent">Impact</span>.
             </h1>
             <p className="max-w-xl text-lg md:text-2xl font-sans text-white/70 leading-relaxed mx-auto font-light">
-              Alexis — Web Full-stack Developer & UX Designer. I build scalable applications 
+              Alexis — Web Full-stack Developer & UX Designer. I build scalable applications
               by prioritizing how humans actually use them.
             </p>
-            
+
             <div className="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto">
-              <a 
-                href="#work" 
+              <a
+                href="#work"
                 className="px-10 py-4 bg-accent text-slate-950 font-sans font-bold rounded-full hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(56,189,248,0.3)]"
               >
                 View Work
               </a>
-              <a 
-                href="#about" 
+              <a
+                href="#about"
                 className="px-10 py-4 border border-white/10 font-sans font-medium rounded-full hover:bg-white/5 transition-all duration-300 backdrop-blur-sm"
               >
                 My Story
               </a>
             </div>
-          </div> 
-          */}
+          </motion.div>
         </div>
       </section>
 
