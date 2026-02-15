@@ -1,11 +1,11 @@
 import React from 'react'
 
-interface MeshBackgroundProps extends React.HTMLAttributes<HTMLDivElement> { }
+type MeshBackgroundProps = React.HTMLAttributes<HTMLDivElement>
 
 export const MeshBackground: React.FC<MeshBackgroundProps> = ({ className, ...props }) => {
     return (
         <div
-            className={`bg-black min-h-screen w-full transition-all duration-700 ease-in-out ${className || ''}`}
+            className={`bg-black bg-mesh min-h-screen w-full transition-all duration-700 ease-in-out ${className || ''}`}
             {...props}
         />
     )

@@ -1,0 +1,19 @@
+Alexis Dezeque - Junior Dev Front-end / Full-stack
+
+Disponibilite: Immediate
+Email: hello@alexis.dev
+Portfolio: https://localhost:3000
+
+Competences
+- Next.js / React / TypeScript
+- Symfony / API / architecture front-end
+- UX, motion, performance, accessibilite
+
+Objectif
+- Rejoindre une equipe en tant que developpeur junior front-end / full-stack
+- Continuer a progresser sur des projets produit concrets
+
+Process
+1. Comprendre
+2. Construire
+3. Ameliorer

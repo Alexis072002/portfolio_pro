@@ -12,17 +12,20 @@ class ResizeObserver {
 window.ResizeObserver = ResizeObserver
 
 // Mock IntersectionObserver
-const IntersectionObserverMock = vi.fn(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-    root: null,
-    rootMargin: '',
-    thresholds: [0],
-    takeRecords: vi.fn(),
-}))
+class IntersectionObserver {
+    root: Element | Document | null = null
+    rootMargin = ''
+    thresholds: ReadonlyArray<number> = [0]
 
-vi.stubGlobal('IntersectionObserver', IntersectionObserverMock)
+    observe() { }
+    unobserve() { }
+    disconnect() { }
+    takeRecords() {
+        return []
+    }
+}
+
+vi.stubGlobal('IntersectionObserver', IntersectionObserver)
 
 // Mock MatchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -42,8 +45,9 @@ Object.defineProperty(window, 'matchMedia', {
 // Mock next/image
 vi.mock('next/image', () => ({
     __esModule: true,
-    default: (props: any) => {
-        // eslint-disable-next-line @next/next/no-img-element
-        return React.createElement('img', { ...props, src: props.src })
+    default: (props: React.ImgHTMLAttributes<HTMLImageElement> & { fill?: boolean }) => {
+        const rest = { ...props }
+        delete rest.fill
+        return React.createElement('img', { ...rest, src: props.src })
     },
 }))

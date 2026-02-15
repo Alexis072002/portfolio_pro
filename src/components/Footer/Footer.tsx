@@ -6,9 +6,9 @@ export const Footer: React.FC = () => {
     return (
         <footer className="w-full py-16 px-8 bg-black border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-xs font-sans tracking-widest uppercase text-white/20">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12">
-                <p>&copy; {currentYear} Alexis. Built for Impact.</p>
+                <p>&copy; {currentYear} Alexis Dezeque. Junior Dev Portfolio.</p>
                 <div className="hidden md:block w-px h-4 bg-white/10" />
-                <p className="font-light">Crafted with Passion & Next.js</p>
+                <p className="font-light">Front-end / Full-stack // Next.js</p>
             </div>
 
             <div className="flex gap-8">
