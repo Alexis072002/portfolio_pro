@@ -1105,8 +1105,8 @@ export default function Home() {
                     ? <>Parlons de votre <span className="text-accent">projet</span>.</>
                     : <>Let&apos;s discuss your <span className="text-accent">project</span>.</>)
                   : (language === 'fr'
-                    ? <>Parlons de votre <span className="text-accent">processus de recrutement</span>.</>
-                    : <>Let&apos;s discuss your <span className="text-accent">hiring process</span>.</>)}
+                    ? <>Interessé par mon profil ? <span className="text-accent">Contactez-moi</span>.</>
+                    : <>Interested in my profile ? <span className="text-accent">Contact me</span>.</>)}
               </h2>
               <p className="text-base sm:text-lg font-sans text-white/60 mb-8 tracking-[0.08em] uppercase">
                 React / Next / NestJS // {availableNowLabel}
