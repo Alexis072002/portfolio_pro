@@ -55,10 +55,14 @@ export const HeroScrollCanvas: React.FC<HeroScrollCanvasProps> = ({
         ctx.imageSmoothingEnabled = true
         ctx.imageSmoothingQuality = 'high'
 
-        const scale = Math.max(canvas.width / img.width, canvas.height / img.height)
-        const x = (canvas.width - img.width * scale) / 2
-        const y = (canvas.height - img.height * scale) / 2
-        ctx.drawImage(img, x, y, img.width * scale, img.height * scale)
+        // Small overscan avoids thin seams on some browsers/DPIs.
+        const overscan = 1.03
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height) * overscan
+        const drawWidth = img.width * scale
+        const drawHeight = img.height * scale
+        const x = (canvas.width - drawWidth) / 2
+        const y = (canvas.height - drawHeight) / 2
+        ctx.drawImage(img, x, y, drawWidth, drawHeight)
 
         lastFrameIndexRef.current = frameIndex
     }, [getFrame, imageUrls.length])
@@ -133,7 +137,7 @@ export const HeroScrollCanvas: React.FC<HeroScrollCanvasProps> = ({
     }, [isReady, progress, drawFrame, reduceMotion, lowDataMode])
 
     return (
-        <div ref={wrapperRef} className="w-full h-full relative">
+        <div ref={wrapperRef} className="w-full h-full relative overflow-hidden">
             {lowDataMode ? (
                 <Image
                     src={imageUrls[0]}
@@ -145,7 +149,7 @@ export const HeroScrollCanvas: React.FC<HeroScrollCanvasProps> = ({
             ) : (
                 <canvas
                     ref={canvasRef}
-                    className="w-full h-full object-cover opacity-100"
+                    className="block w-full h-full object-cover opacity-100"
                 />
             )}
             {!isReady && !lowDataMode && (

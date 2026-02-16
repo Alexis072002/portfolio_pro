@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { LanguageSwitcher } from '@/components/Language/LanguageSwitcher'
+import { useLanguage } from '@/components/Language/LanguageProvider'
 
 interface SideNavProps {
     sections: string[]
@@ -9,11 +11,31 @@ interface SideNavProps {
 }
 
 export const SideNav: React.FC<SideNavProps> = ({ sections, activeSection }) => {
+    const { language } = useLanguage()
+    const sectionLabels: Record<string, string> = language === 'fr'
+        ? {
+            hero: 'hero',
+            work: 'profil',
+            proofs: 'workflow IA',
+            about: 'stack',
+            faq: 'faq',
+            contact: 'contact'
+        }
+        : {
+            hero: 'hero',
+            work: 'profile',
+            proofs: 'ai workflow',
+            about: 'stack',
+            faq: 'faq',
+            contact: 'contact'
+        }
+
     return (
         <nav
             role="navigation"
             className="fixed left-4 xl:left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-6 py-8 px-3 rounded-full backdrop-blur-xl backdrop-blur-3xl bg-white/5 bg-black/40 border border-white/5 shadow-[0_0_50px_rgba(0,0,0,1)]"
         >
+            <LanguageSwitcher />
             {sections.map((id) => {
                 const isActive = activeSection === id
 
@@ -36,7 +58,7 @@ export const SideNav: React.FC<SideNavProps> = ({ sections, activeSection }) => 
 
                         {/* Tooltip Label */}
                         <span className="absolute left-12 px-4 py-1 rounded-full bg-black/60 backdrop-blur-xl border border-white/5 text-[10px] font-sans tracking-[0.2em] font-medium text-white/50 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none capitalize translate-x-4 group-hover:translate-x-0">
-                            {id}
+                            {sectionLabels[id] ?? id}
                         </span>
                     </a>
                 )

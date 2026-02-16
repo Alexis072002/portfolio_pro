@@ -57,6 +57,12 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+  margin: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
 }
 
 :focus-visible {
