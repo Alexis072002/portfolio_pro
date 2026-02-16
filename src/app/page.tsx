@@ -7,12 +7,13 @@ import { ProjectCarousel } from '@/components/Work/ProjectCarousel'
 import { PORTFOLIO_PROJECTS } from '@/data/projects'
 
 const TECH_STACK = [
-  { name: "Next.js", color: "text-white" },
-  { name: "React", color: "text-accent" },
-  { name: "NestJS", color: "text-emerald-400" },
-  { name: "TypeScript", color: "text-white/70" },
-  { name: "TailwindCSS", color: "text-sky-400" },
-  { name: "PostgreSQL", color: "text-white/60" }
+  { name: "Next.js", glyph: "N", ring: "border-white/20", tone: "text-white" },
+  { name: "Python", glyph: "Py", ring: "border-yellow-300/30", tone: "text-yellow-200" },
+  { name: "React", glyph: "R", ring: "border-sky-300/30", tone: "text-accent" },
+  { name: "NestJS", glyph: "Ne", ring: "border-rose-300/30", tone: "text-rose-200" },
+  { name: "TypeScript", glyph: "TS", ring: "border-blue-300/30", tone: "text-blue-200" },
+  { name: "TailwindCSS", glyph: "Tw", ring: "border-cyan-300/30", tone: "text-cyan-200" },
+  { name: "PostgreSQL", glyph: "Pg", ring: "border-indigo-300/30", tone: "text-indigo-200" }
 ]
 
 const SERVICES = [
@@ -36,16 +37,16 @@ const SERVICES = [
   }
 ]
 
-const CLIENT_PROOFS = [
-  { value: "<24h", label: "Average response time" },
-  { value: "JS/TS", label: "Primary stack" },
-  { value: "100%", label: "Mobile and tablet responsive" }
+const CLIENT_SNAPSHOT = [
+  "Fast discovery and clear scope before implementation",
+  "Production-ready frontend quality with strong UX focus",
+  "Transparent communication and predictable milestones"
 ]
 
-const RECRUITER_PROOFS = [
-  { value: "React/Next", label: "Frontend specialization" },
-  { value: "NestJS", label: "Full-stack capability" },
-  { value: "Available", label: "Fast onboarding" }
+const RECRUITER_SNAPSHOT = [
+  "Frontend ownership on React/Next features",
+  "Clean architecture and maintainable component patterns",
+  "Fast onboarding, collaborative mindset, and steady delivery"
 ]
 
 const RECRUITER_HIGHLIGHTS = [
@@ -220,13 +221,16 @@ export default function Home() {
   )
 
   const audienceLabel = audience === 'client' ? 'client' : 'recruiter'
-  const introRoleLine = audience === 'client' ? '- Freelance Web Developer' : '- Junior Frontend / Full-stack Developer'
+  const introRoleLine = audience === 'client' ? '- Freelance Web Developer' : '- Creative Full-stack Developer'
   const introAudiencePitch = audience === 'client'
     ? "Portfolio designed for client acquisition and fast execution."
-    : "Portfolio designed for full-time frontend/full-stack hiring."
+    : "I craft responsive, high-performance web applications with a focus on user experience and clean code. I am currently looking for a full-time opportunity to bring creative ideas to life within a passionate team."
+  const heroTitle = audience === 'client'
+    ? <>React / Next.js<br />&amp; Full-stack <span className="text-accent">JavaScript</span>.</>
+    : <>Building Scalable Apps with React &amp; Next.js</>
   const heroPitch = audience === 'client'
     ? "I build fast, maintainable web experiences aligned with your product goals."
-    : "I am available to join your frontend/full-stack team with a strong JavaScript mindset."
+    : "Specialized in the modern JavaScript ecosystem. I build accessible, pixel-perfect web experiences and I am ready to join your team today."
   const primaryCtaLabel = audience === 'client' ? 'View services' : 'View profile'
   const secondaryCtaLabel = audience === 'client' ? 'Discuss your project' : 'Schedule an interview'
   const workTitle = audience === 'client'
@@ -235,12 +239,12 @@ export default function Home() {
   const workSubtitle = audience === 'client'
     ? 'Lean service offers focused on acquisition and conversion'
     : 'Snapshot of my junior profile for a full-time frontend/full-stack role'
-  const proofs = audience === 'client' ? CLIENT_PROOFS : RECRUITER_PROOFS
+  const snapshotItems = audience === 'client' ? CLIENT_SNAPSHOT : RECRUITER_SNAPSHOT
   const faqItems = audience === 'client' ? FAQ_CLIENT : FAQ_RECRUITER
   const aboutEyebrow = audience === 'client' ? 'Positioning // Freelance offer' : 'Positioning // Full-time application'
   const aboutTitle = audience === 'client'
     ? <>React / Next for <span className="text-accent italic">client acquisition</span>,<br />NestJS for robust delivery.</>
-    : <>React / Next <span className="text-accent italic">as core focus</span>,<br />NestJS for full-stack contribution.</>
+    : <>React / Next <span className="text-accent italic">first</span>,<br />NestJS for full-stack.</>
   const aboutParagraphs = audience === 'client'
     ? [
       "I help teams turn requirements into fast, clear and result-oriented web experiences.",
@@ -260,9 +264,6 @@ export default function Home() {
   const projectsIntro = audience === 'client'
     ? "Preview of the final case study format to help you visualize collaboration."
     : "Preview of the final project format shared during hiring conversations."
-  const projectsPlaceholderText = audience === 'client'
-    ? "These cards are placeholders to preview the final experience. Detailed case studies will be published progressively."
-    : "These cards are placeholders to preview the final experience. Detailed case studies will be published for upcoming interviews."
 
   const handleAudienceChange = (nextAudience: Audience) => {
     setAudience(nextAudience)
@@ -418,9 +419,7 @@ export default function Home() {
             className="relative z-20 flex flex-col items-center justify-center px-4 sm:px-6 text-center pointer-events-none"
           >
             <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-serif font-medium tracking-tighter mb-6 md:mb-8 leading-[1.05] text-white drop-shadow-[0_0_40px_rgba(2,6,23,0.9)]">
-              React / Next.js
-              <br />
-              &amp; Full-stack <span className="text-accent">JavaScript</span>.
+              {heroTitle}
             </h2>
             <p className="max-w-2xl text-base sm:text-lg md:text-2xl font-sans text-white leading-relaxed mx-auto font-medium mb-10 md:mb-12 drop-shadow-[0_0_30px_rgba(2,6,23,0.8)]">
               {heroPitch}
@@ -470,9 +469,6 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 md:gap-6">
               <article className="lg:col-span-2 relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8">
                 <div className="absolute -top-20 -right-20 w-52 h-52 bg-accent/20 blur-[100px] rounded-full pointer-events-none" />
-                <p className="inline-flex rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-[10px] tracking-[0.18em] uppercase text-accent mb-5">
-                  Junior Candidate
-                </p>
                 <h3 className="text-3xl md:text-4xl font-serif text-white leading-tight">
                   Alexis Dezeque
                 </h3>
@@ -501,10 +497,10 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="#contact"
+                  href="#projects"
                   className="mt-7 inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-slate-950 text-sm font-semibold hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 >
-                  Schedule a call
+                  My projects
                 </a>
               </article>
 
@@ -538,24 +534,39 @@ export default function Home() {
           </div>
 
           <ProjectCarousel projects={PORTFOLIO_PROJECTS} />
-
-          <div className="mt-8 rounded-2xl border border-dashed border-white/15 bg-white/[0.01] p-5 text-center">
-            <p className="text-white/70">
-              {projectsPlaceholderText}
-            </p>
-          </div>
         </div>
       </section>
 
       <section id="proofs" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-black">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            {proofs.map((proof) => (
-              <div key={proof.label} className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-8 text-center">
-                <p className="text-4xl md:text-5xl text-accent font-serif mb-2">{proof.value}</p>
-                <p className="text-white/70 tracking-[0.12em] uppercase text-xs md:text-sm">{proof.label}</p>
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.02] p-6 md:p-8">
+            <div className="absolute -top-24 right-0 w-72 h-72 bg-accent/15 blur-[120px] rounded-full pointer-events-none" />
+            <div className="relative grid grid-cols-1 lg:grid-cols-5 gap-6">
+              <article className="lg:col-span-2 rounded-3xl border border-white/10 bg-black/30 p-6 md:p-7">
+                <p className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-3">
+                  {audience === 'client' ? 'Delivery model' : 'Hiring fit'}
+                </p>
+                <h3 className="text-2xl md:text-3xl font-serif text-white leading-tight">
+                  {audience === 'client'
+                    ? <>Built for <span className="text-accent">results</span> and clarity.</>
+                    : <>Built for <span className="text-accent">team impact</span> and growth.</>}
+                </h3>
+                <p className="mt-4 text-white/70 text-sm md:text-base leading-relaxed">
+                  {audience === 'client'
+                    ? 'A practical collaboration style: clear scope, fast execution, and maintainable outcomes.'
+                    : 'A recruiter-friendly profile: strong frontend fundamentals, structured delivery, and fast progression.'}
+                </p>
+              </article>
+
+              <div className="lg:col-span-3 grid grid-cols-1 gap-3">
+                {snapshotItems.map((item) => (
+                  <article key={item} className="rounded-2xl border border-white/10 bg-black/25 p-4 md:p-5 flex items-start gap-3">
+                    <span className="mt-1 inline-flex w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_12px_rgba(56,189,248,0.7)]" />
+                    <p className="text-white/80 leading-relaxed text-sm md:text-base">{item}</p>
+                  </article>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -576,25 +587,52 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-              {TECH_STACK.map((tech, i) => (
-                <motion.div
-                  key={tech.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.06 }}
-                  whileHover={prefersReducedMotion ? undefined : { y: -8, rotate: 1.5 }}
-                  className="aspect-square rounded-3xl bg-white/[0.03] border border-white/5 flex flex-col items-center justify-center p-4 sm:p-6 backdrop-blur-md group hover:border-accent/30 transition-colors duration-500"
+            <div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+                {TECH_STACK.map((tech, i) => (
+                  <motion.div
+                    key={tech.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: i * 0.06 }}
+                    whileHover={prefersReducedMotion ? undefined : { y: -8, rotate: 1.5 }}
+                    className="aspect-square rounded-3xl bg-white/[0.03] border border-white/5 flex flex-col items-center justify-center p-4 sm:p-6 backdrop-blur-md group hover:border-accent/30 transition-colors duration-500"
+                  >
+                    <div className={`w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 transition-transform duration-500 group-hover:scale-110 rounded-2xl border ${tech.ring} bg-black/35 ${tech.tone} drop-shadow-[0_0_15px_rgba(14,165,233,0.25)] flex items-center justify-center`}>
+                      <span className="text-base sm:text-lg font-semibold tracking-wide">{tech.glyph}</span>
+                    </div>
+                    <span className="text-[9px] sm:text-[10px] md:text-xs font-sans tracking-[0.15em] uppercase text-white/40 group-hover:text-accent transition-colors">
+                      {tech.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex items-center gap-3">
+                <a
+                  href="https://www.linkedin.com/in/alexis-dezeque-935446175/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile"
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-2xl border border-white/15 bg-white/[0.02] text-white/80 hover:text-accent hover:border-accent/35 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <div className={`w-14 h-14 sm:w-16 sm:h-16 mb-3 sm:mb-4 transition-transform duration-500 group-hover:scale-110 ${tech.color} drop-shadow-[0_0_15px_rgba(14,165,233,0.3)] flex items-center justify-center`}>
-                    <span className="text-xl sm:text-2xl font-serif">{tech.name.slice(0, 1)}</span>
-                  </div>
-                  <span className="text-[9px] sm:text-[10px] md:text-xs font-sans tracking-[0.15em] uppercase text-white/40 group-hover:text-accent transition-colors">
-                    {tech.name}
-                  </span>
-                </motion.div>
-              ))}
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden>
+                    <path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12ZM5.5 18.5h2.9V9.9H5.5v8.6Zm4.8-8.6h2.78v1.17h.04c.39-.74 1.33-1.52 2.73-1.52 2.92 0 3.46 1.92 3.46 4.41v4.54h-2.9v-4.02c0-.96-.02-2.2-1.34-2.2-1.34 0-1.55 1.04-1.55 2.12v4.1h-2.9V9.9Z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/Alexis072002?tab=overview&from=2024-12-01&to=2024-12-31"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub profile"
+                  className="inline-flex items-center justify-center w-12 h-12 rounded-2xl border border-white/15 bg-white/[0.02] text-white/80 hover:text-accent hover:border-accent/35 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden>
+                    <path d="M12 .5a12 12 0 0 0-3.8 23.38c.6.1.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.55-1.38-1.33-1.74-1.33-1.74-1.1-.75.08-.74.08-.74 1.2.08 1.84 1.24 1.84 1.24 1.08 1.84 2.82 1.3 3.5 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.92 0-1.31.46-2.38 1.23-3.22-.12-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 0 1 6 0c2.28-1.55 3.28-1.23 3.28-1.23.67 1.65.25 2.88.13 3.18.77.84 1.22 1.9 1.22 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 12 .5Z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
