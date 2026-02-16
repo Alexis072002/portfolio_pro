@@ -1,7 +1,7 @@
 Alexis Dezeque - Junior Dev Front-end / Full-stack
 
 Disponibilite: Immediate
-Email: hello@alexis.dev
+Email: alexis.dezeque@outlook.com
 Portfolio: https://localhost:3000
 
 Competences

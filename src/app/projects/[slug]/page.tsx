@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     }
 
     return (
-        <main className="w-full min-h-screen bg-black px-4 sm:px-6 py-16 md:py-24">
+        <main className="w-full min-h-screen bg-background px-4 sm:px-6 py-16 md:py-24">
             <article className="max-w-4xl mx-auto">
                 <Link
                     href="/#work"

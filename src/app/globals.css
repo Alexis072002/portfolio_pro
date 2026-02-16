@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  /* Pure Black */
+  --background: #070b10;
+  /* Very dark slate */
   --foreground: #f8fafc;
   /* Slate 50 */
 
   /* Semantic Colors */
-  --card: #0a0a0a;
-  /* Very Deep Gray/Black */
+  --card: #0d141d;
+  /* Deep slate card */
   --accent: #0ea5e9;
   /* Vibrant Cyan (Sky 500) */
   --accent-muted: #0369a1;

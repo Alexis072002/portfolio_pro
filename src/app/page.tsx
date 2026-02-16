@@ -297,6 +297,7 @@ const HERO_FRAMES = Array.from({ length: 80 }, (_, i) =>
 
 const PROFILE_PHOTO_SRC = "/assets/pictures/me.png"
 const AUDIENCE_STORAGE_KEY = "portfolio_audience_mode"
+const CONTACT_EMAIL = "alexis.dezeque@outlook.com"
 
 type Audience = 'recruiter' | 'client'
 
@@ -608,7 +609,7 @@ export default function Home() {
 
     const body = encodeURIComponent(bodyLines.join('\r\n'))
 
-    window.location.href = `mailto:hello@alexis.dev?subject=${subject}&body=${body}`
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
     setFormFeedback(language === 'fr'
       ? "Message préparé. Votre client email s'ouvre."
       : "Message prepared. Your email client is opening.")
@@ -625,7 +626,7 @@ export default function Home() {
       name: "Alexis Dezeque"
     },
     url: "https://alexis.dev",
-    email: "hello@alexis.dev"
+    email: CONTACT_EMAIL
   }
 
   return (
@@ -787,7 +788,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="work" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 bg-black">
+      <section id="work" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="mb-12 md:mb-14 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold mb-5 md:mb-6 text-white">
@@ -877,7 +878,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-black">
+      <section id="projects" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
@@ -894,7 +895,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="proofs" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-black">
+      <section id="proofs" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-background">
         <div className="max-w-6xl mx-auto">
           <div className="mb-10 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
@@ -989,7 +990,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-black relative overflow-hidden">
+      <section id="about" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-background relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[700px] md:h-[700px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 md:gap-20 items-center">
@@ -1056,7 +1057,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="faq" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-black">
+      <section id="faq" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-background">
         <div className="max-w-4xl mx-auto">
           <div className="mb-10 text-center">
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
@@ -1089,7 +1090,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 flex items-center justify-center bg-black relative">
+      <section id="contact" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 flex items-center justify-center bg-background relative">
         <div className="max-w-6xl mx-auto w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-start">
             <motion.div
@@ -1120,7 +1121,7 @@ export default function Home() {
                   Calendly
                 </a>
                 <a
-                  href="mailto:hello@alexis.dev"
+                  href={`mailto:${CONTACT_EMAIL}`}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/15 text-white font-medium hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   {language === 'fr' ? 'Email direct' : 'Direct email'}

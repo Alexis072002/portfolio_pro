@@ -33,9 +33,9 @@ export const SideNav: React.FC<SideNavProps> = ({ sections, activeSection }) => 
     return (
         <nav
             role="navigation"
-            className="fixed left-4 xl:left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-6 py-8 px-3 rounded-full backdrop-blur-xl backdrop-blur-3xl bg-white/5 bg-black/40 border border-white/5 shadow-[0_0_50px_rgba(0,0,0,1)]"
+            className="fixed left-4 xl:left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-6 py-8 px-2.5 rounded-full backdrop-blur-xl backdrop-blur-3xl bg-white/5 bg-black/40 border border-white/5 shadow-[0_0_50px_rgba(0,0,0,1)]"
         >
-            <LanguageSwitcher />
+            <LanguageSwitcher orientation="vertical" />
             {sections.map((id) => {
                 const isActive = activeSection === id
 
