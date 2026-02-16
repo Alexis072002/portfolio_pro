@@ -20,8 +20,8 @@ export const generateMetadata = async ({ params }: ProjectPageProps): Promise<Me
     const project = getProjectBySlug(slug)
     if (!project) {
         return {
-            title: 'Projet introuvable',
-            description: 'Ce projet n existe pas ou n est plus disponible.'
+            title: 'Project not found',
+            description: 'This project does not exist or is no longer available.'
         }
     }
 
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     href="/#work"
                     className="inline-flex items-center text-sm uppercase tracking-[0.18em] text-white/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md px-1 py-1"
                 >
-                    Retour au portfolio
+                    Back to portfolio
                 </Link>
 
                 <header className="mt-8 md:mt-10">
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
                 <section className="mt-10 md:mt-14 space-y-6">
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-                        <h2 className="text-white text-xl md:text-2xl font-serif mb-3">Probleme</h2>
+                        <h2 className="text-white text-xl md:text-2xl font-serif mb-3">Problem</h2>
                         <p className="text-white/75 leading-relaxed">{project.problem}</p>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
@@ -97,14 +97,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         <p className="text-white/75 leading-relaxed">{project.solution}</p>
                     </div>
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-                        <h2 className="text-white text-xl md:text-2xl font-serif mb-3">Resultat</h2>
+                        <h2 className="text-white text-xl md:text-2xl font-serif mb-3">Result</h2>
                         <p className="text-white/75 leading-relaxed">{project.result}</p>
                     </div>
                 </section>
 
                 <section className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-                        <h3 className="text-white text-lg font-serif mb-4">Points cles</h3>
+                        <h3 className="text-white text-lg font-serif mb-4">Key highlights</h3>
                         <ul className="space-y-2">
                             {project.metrics.map((metric) => (
                                 <li key={metric} className="text-white/75">{metric}</li>
@@ -113,7 +113,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </div>
 
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-                        <h3 className="text-white text-lg font-serif mb-4">Stack utilisee</h3>
+                        <h3 className="text-white text-lg font-serif mb-4">Tech stack</h3>
                         <ul className="space-y-2">
                             {project.tech.map((item) => (
                                 <li key={item} className="text-white/75">{item}</li>

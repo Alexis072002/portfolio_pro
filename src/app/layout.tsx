@@ -18,8 +18,8 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: "Alexis Dezeque | Junior Dev Front-end / Full-stack",
-  description: "Portfolio d Alexis Dezeque, developpeur web junior front-end / full-stack. Projets, stack et methode de travail.",
+  title: "Alexis Dezeque | Freelance Frontend / Full-stack Developer",
+  description: "Alexis Dezeque portfolio for recruiters and clients: React, Next.js, NestJS, web services, and fast contact.",
 };
 
 export default function RootLayout({

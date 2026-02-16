@@ -19,7 +19,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, category, image
             <Link
                 href={`/projects/${slug}`}
                 className="group relative block aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden bg-white/[0.02] border border-white/10 hover:border-accent/40 transition-colors duration-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                aria-label={`Ouvrir le projet ${title}`}
+                aria-label={`Open project ${title}`}
             >
                 {/* Project Image */}
                 <div className="absolute inset-0 z-0">

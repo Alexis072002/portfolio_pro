@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { SideNav } from '@/components/SideNav/SideNav'
 import { useActiveSection } from '@/hooks/useActiveSection'
 
-const SECTIONS = ['hero', 'work', 'about', 'process', 'standards', 'contact']
+const SECTIONS = ['hero', 'work', 'proofs', 'about', 'faq', 'contact']
 
 export const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const activeSection = useActiveSection(SECTIONS)
