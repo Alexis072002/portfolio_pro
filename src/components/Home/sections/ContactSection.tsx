@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import type { Audience, ContactFormState } from '@/components/Home/types'
 
 interface ContactSectionProps {
@@ -33,12 +32,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
     <section id="contact" className="w-full min-h-screen py-24 md:py-28 px-5 sm:px-6 flex items-center justify-center bg-background relative">
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-14 items-start">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.1, ease: 'easeOut' }}
-          >
+          <div>
             <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold mb-6 md:mb-8 text-white leading-tight">
               {audience === 'client'
                 ? language === 'fr'
@@ -75,7 +69,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 GitHub
               </a>
             </div>
-          </motion.div>
+          </div>
 
           <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 md:p-8">
             <h3 className="text-white text-2xl font-serif mb-2">{language === 'fr' ? 'Formulaire rapide' : 'Quick form'}</h3>
