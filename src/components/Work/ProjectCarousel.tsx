@@ -63,7 +63,7 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) =>
                     drag="x"
                     dragConstraints={constraints}
                     style={{ x: springX }}
-                    className="flex gap-5 sm:gap-7 md:gap-10 py-8 md:py-10"
+                    className="flex gap-5 sm:gap-7 md:gap-10 py-10 md:py-10"
                 >
                     {projects.map((project, index) => (
                         <div key={`${project.title}-${index}`} className="flex-shrink-0 w-[88vw] sm:w-[76vw] md:w-[560px] lg:w-[600px]">
@@ -76,7 +76,7 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) =>
             </div>
 
             {/* Premium Cyan Controls */}
-            <div className="flex items-center justify-center gap-5 sm:gap-7 md:gap-10 mt-8 md:mt-12">
+            <div className="flex items-center justify-center gap-5 sm:gap-7 md:gap-10 mt-10 md:mt-12">
                 <button
                     onClick={() => handleScroll('prev')}
                     className="group w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full border border-white/5 flex items-center justify-center hover:border-accent/40 bg-white/[0.02] backdrop-blur-md transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.5)]"

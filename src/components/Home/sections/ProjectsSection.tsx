@@ -9,9 +9,9 @@ interface ProjectsSectionProps {
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ language, projectsIntro }) => {
   return (
-    <section id="projects" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-background">
+    <section id="projects" className="w-full py-24 md:py-26 px-5 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-10 text-center">
+        <div className="mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
             {language === 'fr'
               ? <>Projets <span className="text-accent italic">portfolio</span></>

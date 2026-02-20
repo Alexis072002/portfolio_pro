@@ -30,9 +30,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   formFeedback
 }) => {
   return (
-    <section id="contact" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 flex items-center justify-center bg-background relative">
+    <section id="contact" className="w-full min-h-screen py-24 md:py-28 px-5 sm:px-6 flex items-center justify-center bg-background relative">
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-14 items-start">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -48,7 +48,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   ? <>Interessé par mon profil ? <span className="text-accent">Contactez-moi</span>.</>
                   : <>Interested in my profile ? <span className="text-accent">Contact me</span>.</>}
             </h2>
-            <p className="text-base sm:text-lg font-sans text-white/60 mb-8 tracking-[0.08em] uppercase">
+            <p className="text-base sm:text-lg font-sans text-white/60 mb-9 tracking-[0.08em] uppercase">
               React / Next / NestJS // {availableNowLabel}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap">
@@ -77,12 +77,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             </div>
           </motion.div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 md:p-8">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 md:p-8">
             <h3 className="text-white text-2xl font-serif mb-2">{language === 'fr' ? 'Formulaire rapide' : 'Quick form'}</h3>
-            <p className="text-white/60 text-sm mb-6">
+            <p className="text-white/60 text-sm mb-7">
               {formDescription}
             </p>
-            <form className="space-y-4" onSubmit={onSubmit}>
+            <form className="space-y-5" onSubmit={onSubmit}>
               <label className="block">
                 <span className="text-xs uppercase tracking-[0.15em] text-white/50">{language === 'fr' ? 'Nom' : 'Name'}</span>
                 <input

@@ -24,13 +24,13 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   prefersReducedMotion
 }) => {
   return (
-    <section id="about" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-background relative overflow-hidden">
+    <section id="about" className="w-full py-24 md:py-28 px-5 sm:px-6 bg-background relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[700px] md:h-[700px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="max-w-6xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 md:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20 items-center">
           <div>
-            <p className="text-accent font-sans tracking-[0.2em] uppercase text-xs mb-6">{aboutEyebrow}</p>
-            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-8 md:mb-10 text-white leading-tight tracking-tight">
+            <p className="text-accent font-sans tracking-[0.2em] uppercase text-xs mb-7">{aboutEyebrow}</p>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-9 md:mb-10 text-white leading-tight tracking-tight">
               {aboutTitle}
             </h2>
             <div className="space-y-5 text-base md:text-lg font-sans text-white/70 leading-relaxed font-light max-w-xl">
@@ -41,7 +41,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
           </div>
 
           <div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-5 md:gap-6">
               {techStack.map((tech, i) => (
                 <motion.div
                   key={tech.name}
@@ -62,7 +62,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-10 flex items-center gap-3">
               <a
                 href="https://www.linkedin.com/in/alexis-dezeque-935446175/"
                 target="_blank"

@@ -9,9 +9,9 @@ interface FaqSectionProps {
 
 export const FaqSection: React.FC<FaqSectionProps> = ({ audience, language, faqItems }) => {
   return (
-    <section id="faq" className="w-full py-20 md:py-28 px-4 sm:px-6 bg-background">
+    <section id="faq" className="w-full py-24 md:py-28 px-5 sm:px-6 bg-background">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-10 text-center">
+        <div className="mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
             FAQ <span className="text-accent italic">
               {audience === 'client'
@@ -31,9 +31,9 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ audience, language, faqI
                 : 'The key points recruiters typically need about my profile and availability.'}
           </p>
         </div>
-        <div className="space-y-3">
+        <div className="space-y-4">
           {faqItems.map((item) => (
-            <details key={item.q} className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 group">
+            <details key={item.q} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 group">
               <summary className="cursor-pointer list-none text-white font-medium pr-8">
                 {item.q}
               </summary>

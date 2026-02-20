@@ -34,9 +34,9 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
   profilePhotoSrc
 }) => {
   return (
-    <section id="work" className="w-full min-h-screen py-20 md:py-28 px-4 sm:px-6 bg-background">
+    <section id="work" className="w-full min-h-screen py-24 md:py-28 px-5 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12 md:mb-14 text-center">
+        <div className="mb-14 md:mb-14 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-7xl font-serif font-bold mb-5 md:mb-6 text-white">
             {workTitle}
           </h2>
@@ -46,9 +46,9 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
         </div>
 
         {audience === 'client' ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
             {services.map((service) => (
-              <article key={service.title} className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-7">
+              <article key={service.title} className="rounded-3xl border border-white/10 bg-white/[0.02] p-7 md:p-7">
                 <h3 className="text-white text-2xl font-serif mb-3">{service.title}</h3>
                 <p className="text-white/70 leading-relaxed mb-5">{service.description}</p>
                 <p className="text-accent text-sm tracking-[0.12em] uppercase mb-2">{service.scope}</p>
@@ -57,8 +57,8 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 md:gap-6">
-            <article className="lg:col-span-2 relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 md:gap-6">
+            <article className="lg:col-span-2 relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-7 md:p-8">
               <div className="absolute -top-20 -right-20 w-52 h-52 bg-accent/20 blur-[100px] rounded-full pointer-events-none" />
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -81,7 +81,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
                 />
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-7 flex flex-wrap gap-2.5">
                 {RECRUITER_STACK.map((skill) => (
                   <span
                     key={skill}
@@ -92,7 +92,7 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
                 ))}
               </div>
 
-              <div className="mt-6 space-y-3">
+              <div className="mt-7 space-y-3.5">
                 {recruiterFacts.map((fact) => (
                   <div key={fact.label} className="flex items-center justify-between rounded-xl border border-white/10 bg-black/30 px-4 py-3">
                     <span className="text-white/50 text-xs uppercase tracking-[0.14em]">{fact.label}</span>
@@ -103,13 +103,13 @@ export const WorkSection: React.FC<WorkSectionProps> = ({
 
               <a
                 href="#projects"
-                className="mt-7 inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-slate-950 text-sm font-semibold hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-5 py-2.5 text-slate-950 text-sm font-semibold hover:brightness-110 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
                 {language === 'fr' ? 'Mes projets' : 'My projects'}
               </a>
             </article>
 
-            <div className="lg:col-span-3 grid grid-cols-1 xl:grid-cols-2 gap-5 md:gap-6">
+            <div className="lg:col-span-3 grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-6">
               {recruiterHighlights.map((item, index) => (
                 <article
                   key={item.title}

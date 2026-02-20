@@ -15,9 +15,9 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
   humanLedAiExecution
 }) => {
   return (
-    <section id="proofs" className="w-full py-20 md:py-24 px-4 sm:px-6 bg-background">
+    <section id="proofs" className="w-full py-24 md:py-26 px-5 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-10 text-center">
+        <div className="mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">
             {language === 'fr'
               ? <>Workflow <span className="text-accent italic">IA</span></>
@@ -30,8 +30,8 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-6 gap-4 md:gap-5">
-          <article className="lg:col-span-2 rounded-3xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-5 md:gap-6">
+          <article className="lg:col-span-2 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-6">
             <p className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-3">
               {language === 'fr' ? 'Workflow IA-first' : 'AI-first workflow'}
             </p>
@@ -45,7 +45,7 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
                 ? 'L’IA m’aide à passer plus vite de l’idée à la production tout en gardant structure et lisibilité.'
                 : 'AI helps me move faster from idea to production while keeping structure and readability.'}
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-5 flex flex-wrap gap-2.5">
               <span className="rounded-full border border-white/15 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-white/70">
                 {language === 'fr' ? 'Vitesse' : 'Speed'}
               </span>
@@ -58,11 +58,11 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
             </div>
           </article>
 
-          <article className="lg:col-span-4 rounded-3xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
+          <article className="lg:col-span-4 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-6">
             <p className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-4">
               {language === 'fr' ? 'Outils IA préférés' : 'AI tools I prefer'}
             </p>
-            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2.5">
+            <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
               {aiToolsFavorites.map((item) => (
                 <li key={item.tool} className="rounded-xl border border-white/10 bg-black/30 px-4 py-3">
                   <div className="flex items-center gap-3">
@@ -81,11 +81,11 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
             </ul>
           </article>
 
-          <article className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
+          <article className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-6">
             <p className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-4">
               {language === 'fr' ? 'Garde-fous qualité IA' : 'AI quality guardrails'}
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {aiQualityGuardrails.map((item) => (
                 <li key={item} className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white/80 leading-relaxed text-sm">
                   {item}
@@ -94,11 +94,11 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
             </ul>
           </article>
 
-          <article className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.02] p-5 md:p-6">
+          <article className="lg:col-span-3 rounded-3xl border border-white/10 bg-white/[0.02] p-6 md:p-6">
             <p className="text-[10px] tracking-[0.2em] uppercase text-white/45 mb-4">
               {language === 'fr' ? 'Exécution IA pilotée par l’humain' : 'Human-led AI execution'}
             </p>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {humanLedAiExecution.map((item) => (
                 <li key={item} className="rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white/80 leading-relaxed text-sm">
                   {item}
