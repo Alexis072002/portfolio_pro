@@ -15,7 +15,7 @@ export const ProofsSection: React.FC<ProofsSectionProps> = ({
   humanLedAiExecution
 }) => {
   return (
-    <section id="proofs" className="w-full py-24 md:py-26 px-5 sm:px-6 bg-background">
+    <section id="proofs" className="w-full pt-24 pb-32 md:pt-26 md:pb-32 px-5 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white">

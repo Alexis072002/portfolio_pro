@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { motion, useMotionValue, useSpring, animate } from 'framer-motion'
 import { ProjectCard } from './ProjectCard'
 import type { PortfolioProject } from '@/data/projects'
@@ -10,44 +10,79 @@ interface ProjectCarouselProps {
 }
 
 export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) => {
+    const viewportRef = useRef<HTMLDivElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
     const [constraints, setConstraints] = useState({ left: 0, right: 0 })
+    const [sidePadding, setSidePadding] = useState(0)
+    const [cardWidth, setCardWidth] = useState(0)
+    const [step, setStep] = useState(0)
+    const [activeIndex, setActiveIndex] = useState(0)
     const x = useMotionValue(0)
 
     // Physics-based smoothing for the drag
     const springX = useSpring(x, { stiffness: 300, damping: 30 })
 
+    const clampIndex = useCallback((index: number) => {
+        if (projects.length === 0) {
+            return 0
+        }
+        return Math.max(0, Math.min(projects.length - 1, index))
+    }, [projects.length])
+
+    const animateToIndex = useCallback((index: number) => {
+        const safeIndex = clampIndex(index)
+        setActiveIndex(safeIndex)
+        animate(x, sidePadding - (safeIndex * step), {
+            type: "spring",
+            stiffness: 300,
+            damping: 30
+        })
+    }, [clampIndex, sidePadding, step, x])
+
     useEffect(() => {
         const updateConstraints = () => {
-            if (containerRef.current) {
-                const containerWidth = containerRef.current.parentElement?.offsetWidth || 0
-                const contentWidth = containerRef.current.scrollWidth
-                const overflow = Math.max(0, contentWidth - containerWidth + 32)
-                setConstraints({ left: -overflow, right: 0 })
+            if (!containerRef.current || !viewportRef.current) {
+                return
             }
+
+            const viewportWidth = viewportRef.current.offsetWidth
+            const nextCardWidth =
+                viewportWidth >= 1024
+                    ? 600
+                    : viewportWidth >= 768
+                        ? 560
+                        : viewportWidth >= 640
+                            ? Math.round(viewportWidth * 0.74)
+                            : Math.round(viewportWidth * 0.8)
+            const nextGap = Number.parseFloat(window.getComputedStyle(containerRef.current).gap || '0')
+            const nextStep = nextCardWidth + (Number.isNaN(nextGap) ? 0 : nextGap)
+            const nextSidePadding = Math.max(0, (viewportWidth - nextCardWidth) / 2)
+            const maxRight = nextSidePadding
+            const minLeft = nextSidePadding - Math.max(0, (projects.length - 1) * nextStep)
+
+            setCardWidth(nextCardWidth)
+            setStep(nextStep)
+            setSidePadding(nextSidePadding)
+            setConstraints({ left: minLeft, right: maxRight })
+            x.set(nextSidePadding - (clampIndex(activeIndex) * nextStep))
         }
 
         updateConstraints()
         window.addEventListener('resize', updateConstraints)
         return () => window.removeEventListener('resize', updateConstraints)
-    }, [projects])
+    }, [projects.length, activeIndex, clampIndex, x])
 
     const handleScroll = (direction: 'next' | 'prev') => {
-        const currentX = x.get()
-        const viewportWidth = window.innerWidth
-        const step =
-            viewportWidth >= 1280
-                ? 640
-                : viewportWidth >= 768
-                    ? 520
-                    : Math.max(260, Math.floor(viewportWidth * 0.82))
-        const targetX = direction === 'next' ? currentX - step : currentX + step
+        const nextIndex = direction === 'next' ? activeIndex + 1 : activeIndex - 1
+        animateToIndex(nextIndex)
+    }
 
-        animate(x, Math.max(constraints.left, Math.min(0, targetX)), {
-            type: "spring",
-            stiffness: 300,
-            damping: 30
-        })
+    const handleDragEnd = () => {
+        if (step <= 0) {
+            return
+        }
+        const nextIndex = Math.round((sidePadding - x.get()) / step)
+        animateToIndex(nextIndex)
     }
 
     return (
@@ -57,21 +92,28 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ projects }) =>
             className="relative w-full overflow-hidden"
         >
             {/* Draggable Area */}
-            <div className="relative overflow-visible cursor-grab active:cursor-grabbing touch-pan-y">
+            <div
+                ref={viewportRef}
+                className="relative left-1/2 w-screen -translate-x-1/2 sm:left-0 sm:w-full sm:translate-x-0 overflow-hidden cursor-grab active:cursor-grabbing touch-pan-y"
+            >
                 <motion.div
                     ref={containerRef}
                     drag="x"
                     dragConstraints={constraints}
+                    onDragEnd={handleDragEnd}
                     style={{ x: springX }}
                     className="flex gap-5 sm:gap-7 md:gap-10 py-10 md:py-10"
                 >
                     {projects.map((project, index) => (
-                        <div key={`${project.title}-${index}`} className="flex-shrink-0 w-[88vw] sm:w-[76vw] md:w-[560px] lg:w-[600px]">
+                        <div
+                            key={`${project.title}-${index}`}
+                            data-carousel-card
+                            className="flex-shrink-0"
+                            style={{ width: cardWidth || undefined }}
+                        >
                             <ProjectCard {...project} />
                         </div>
                     ))}
-                    {/* Extra space at the end to allow for full scrolling */}
-                    <div className="flex-shrink-0 w-8 md:w-16" />
                 </motion.div>
             </div>
 

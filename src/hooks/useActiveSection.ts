@@ -1,20 +1,16 @@
 import { useState, useEffect } from 'react'
 
 export const useActiveSection = (sectionIds: string[], threshold: number = 0.5) => {
-    const [activeSection, setActiveSection] = useState(() => {
-        if (typeof window === 'undefined') {
-            return sectionIds[0]
-        }
-
-        const hashSection = window.location.hash.replace('#', '')
-        if (sectionIds.includes(hashSection)) {
-            return hashSection
-        }
-
-        return sectionIds[0]
-    })
+    const [activeSection, setActiveSection] = useState(sectionIds[0])
 
     useEffect(() => {
+        const syncFromHash = () => {
+            const hashSection = window.location.hash.replace('#', '')
+            if (sectionIds.includes(hashSection)) {
+                setActiveSection(hashSection)
+            }
+        }
+
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -30,6 +26,8 @@ export const useActiveSection = (sectionIds: string[], threshold: number = 0.5) 
         }
 
         const observer = new IntersectionObserver(handleIntersect, observerOptions)
+        syncFromHash()
+        window.addEventListener('hashchange', syncFromHash)
 
         sectionIds.forEach((id) => {
             const element = document.getElementById(id)
@@ -39,6 +37,7 @@ export const useActiveSection = (sectionIds: string[], threshold: number = 0.5) 
         })
 
         return () => {
+            window.removeEventListener('hashchange', syncFromHash)
             sectionIds.forEach((id) => {
                 const element = document.getElementById(id)
                 if (element) {

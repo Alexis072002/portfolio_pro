@@ -24,7 +24,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({
   prefersReducedMotion
 }) => {
   return (
-    <section id="about" className="w-full py-24 md:py-28 px-5 sm:px-6 bg-background relative overflow-hidden">
+    <section id="about" className="w-full pt-28 pb-24 md:pt-32 md:pb-28 px-5 sm:px-6 bg-background relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] md:w-[700px] md:h-[700px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="max-w-6xl mx-auto w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20 items-center">
