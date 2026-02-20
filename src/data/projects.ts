@@ -89,13 +89,25 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
                 'Backend -> queue/cache services and PDF generation pipeline'
             ],
             mermaidDefinition: `flowchart LR
-  U["User Browser"] --> F["Next.js Frontend (App Router)"]
-  F -->|"JWT cookie (httpOnly)"| B["NestJS Backend API"]
-  B --> P["PostgreSQL (Prisma)"]
-  B --> G["Google APIs (OAuth, YouTube Analytics, GA4 Data API)"]
-  B --> Q["In-memory Queue Service"]
-  B --> C["In-memory Cache Service"]
-  B --> R["/tmp PDF storage"]`,
+  U["User Browser"]
+  F["Next.js Frontend\\n(App Router)"]
+  B["NestJS Backend API"]
+  P["PostgreSQL\\n(Prisma)"]
+  G["Google APIs\\n(OAuth · YouTube Analytics · GA4)"]
+  Q["In-memory Queue Service"]
+  C["In-memory Cache Service"]
+  R["/tmp PDF Storage"]
+  S["@pulse/shared\\n(Types · tRPC contract)"]
+
+  U -->|"HTTP / HTTPS"| F
+  F -->|"JWT cookie (httpOnly)"| B
+  B --> P
+  B --> G
+  B --> Q
+  B --> C
+  B --> R
+  S -.->|"shared types"| F
+  S -.->|"shared types"| B`,
             diagramPlaceholder: 'Architecture diagram placeholder. Add your schema image here.'
         },
         features: [

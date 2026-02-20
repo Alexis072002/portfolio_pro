@@ -62,7 +62,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     const audience = isAudienceParam(resolvedSearchParams?.audience)
         ? resolvedSearchParams?.audience
         : undefined
-    const backHref = audience ? `/?audience=${audience}#work` : '/#work'
+    const backHref = audience ? `/?audience=${audience}#projects` : '/#projects'
 
     if (!project) {
         notFound()

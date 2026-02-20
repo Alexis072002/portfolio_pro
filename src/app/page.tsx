@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   animate,
   useMotionTemplate,
@@ -10,7 +10,7 @@ import {
   useSpring,
   useTransform
 } from 'framer-motion'
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useLanguage } from '@/components/Language/LanguageProvider'
 import {
   CONTACT_EMAIL,
@@ -41,6 +41,8 @@ export default function Home() {
   const appliedAudienceQueryRef = useRef<string | null>(null)
   const prefersReducedMotion = useReducedMotion()
   const shouldReduceMotion = Boolean(prefersReducedMotion)
+  const pathname = usePathname()
+  const router = useRouter()
   const searchParams = useSearchParams()
   const { language } = useLanguage()
   const { audience, setAudience } = useAudience()
@@ -197,8 +199,18 @@ export default function Home() {
     shouldReduceMotion ? [0, 0, 0] : [-30, 8, 58]
   )
 
+  const syncAudienceToUrl = useCallback((nextAudience: Audience) => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('audience', nextAudience)
+    const hash = typeof window !== 'undefined' ? window.location.hash : ''
+    const queryString = params.toString()
+    const targetUrl = `${pathname}${queryString ? `?${queryString}` : ''}${hash}`
+    router.replace(targetUrl, { scroll: false })
+  }, [pathname, router, searchParams])
+
   const handleAudienceChange = (nextAudience: Audience) => {
     setAudience(nextAudience)
+    syncAudienceToUrl(nextAudience)
     setFormFeedback('')
   }
 

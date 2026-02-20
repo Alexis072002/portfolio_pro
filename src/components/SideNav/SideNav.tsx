@@ -16,6 +16,7 @@ export const SideNav: React.FC<SideNavProps> = ({ sections, activeSection }) => 
         ? {
             hero: 'hero',
             work: 'profil',
+            projects: 'projets',
             proofs: 'workflow IA',
             about: 'stack',
             faq: 'faq',
@@ -24,6 +25,7 @@ export const SideNav: React.FC<SideNavProps> = ({ sections, activeSection }) => 
         : {
             hero: 'hero',
             work: 'profile',
+            projects: 'projects',
             proofs: 'ai workflow',
             about: 'stack',
             faq: 'faq',
