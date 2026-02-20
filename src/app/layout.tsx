@@ -7,6 +7,7 @@ import { MeshBackground } from "@/components/MeshBackground/MeshBackground";
 import { Footer } from "@/components/Footer/Footer";
 import { MainLayout } from "@/components/MainLayout";
 import { LanguageProvider } from "@/components/Language/LanguageProvider";
+import { AudienceProvider } from "@/components/Audience/AudienceProvider";
 
 const inter = Inter({
   variable: '--font-inter',
@@ -34,12 +35,14 @@ export default function RootLayout({
         className={`${inter.variable} ${outfit.variable} antialiased`}
       >
         <LanguageProvider>
-          <MeshBackground className="flex flex-col">
-            <MainLayout>
-              {children}
-            </MainLayout>
-            <Footer />
-          </MeshBackground>
+          <AudienceProvider>
+            <MeshBackground className="flex flex-col">
+              <MainLayout>
+                {children}
+              </MainLayout>
+              <Footer />
+            </MeshBackground>
+          </AudienceProvider>
         </LanguageProvider>
       </body>
     </html>

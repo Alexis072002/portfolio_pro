@@ -1,16 +1,24 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { PORTFOLIO_PROJECTS } from '@/data/projects'
+import { ProjectScreenshotsCarousel } from '@/components/Work/ProjectScreenshotsCarousel'
 
 interface ProjectPageProps {
     params: Promise<{
         slug: string
     }>
+    searchParams?: Promise<{
+        audience?: string
+    }>
 }
 
 const getProjectBySlug = (slug: string) =>
     PORTFOLIO_PROJECTS.find((project) => project.slug === slug)
+
+const isAudienceParam = (value: string | undefined): value is 'recruiter' | 'client' =>
+    value === 'recruiter' || value === 'client'
 
 export const generateStaticParams = () =>
     PORTFOLIO_PROJECTS.map((project) => ({ slug: project.slug }))
@@ -46,9 +54,14 @@ export const generateMetadata = async ({ params }: ProjectPageProps): Promise<Me
     }
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
     const { slug } = await params
+    const resolvedSearchParams = searchParams ? await searchParams : undefined
     const project = getProjectBySlug(slug)
+    const audience = isAudienceParam(resolvedSearchParams?.audience)
+        ? resolvedSearchParams?.audience
+        : undefined
+    const backHref = audience ? `/?audience=${audience}#work` : '/#work'
 
     if (!project) {
         notFound()
@@ -58,7 +71,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <main className="w-full min-h-screen bg-background px-4 sm:px-6 py-16 md:py-24">
             <article className="max-w-4xl mx-auto">
                 <Link
-                    href="/#work"
+                    href={backHref}
                     className="inline-flex items-center text-sm uppercase tracking-[0.18em] text-white/60 hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md px-1 py-1"
                 >
                     Back to portfolio
@@ -86,6 +99,65 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         </span>
                     ))}
                 </section>
+
+                <ProjectScreenshotsCarousel
+                    title={project.title}
+                    imageUrls={project.screenshotUrls ?? []}
+                />
+
+                {project.architecture && (
+                    <section className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6">
+                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
+                            <h2 className="text-white text-xl md:text-2xl font-serif mb-3">Architecture</h2>
+                            <p className="text-white/75 leading-relaxed mb-6">
+                                {project.architecture.summary}
+                            </p>
+
+                            <div className="space-y-5">
+                                <div>
+                                    <h3 className="text-white text-sm uppercase tracking-[0.18em] mb-2">Monorepo structure</h3>
+                                    <ul className="space-y-2">
+                                        {project.architecture.monorepo.map((item) => (
+                                            <li key={item} className="text-white/75 leading-relaxed">
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 className="text-white text-sm uppercase tracking-[0.18em] mb-2">Runtime flow</h3>
+                                    <ul className="space-y-2">
+                                        {project.architecture.runtime.map((item) => (
+                                            <li key={item} className="text-white/75 leading-relaxed">
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
+                            <h3 className="text-white text-sm uppercase tracking-[0.18em] mb-4">Architecture diagram</h3>
+                            <div className="relative aspect-[16/11] rounded-xl border border-dashed border-white/20 bg-background/60 overflow-hidden">
+                                {project.architecture.diagramImageUrl ? (
+                                    <Image
+                                        src={project.architecture.diagramImageUrl}
+                                        alt={project.architecture.diagramAlt ?? `${project.title} architecture diagram`}
+                                        fill
+                                        className="object-contain p-4"
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 flex items-center justify-center text-center px-4">
+                                        <p className="text-white/55 text-sm leading-relaxed">
+                                            {project.architecture.diagramPlaceholder}
+                                        </p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </section>
+                )}
 
                 <section className="mt-10 md:mt-14 space-y-6">
                     <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
@@ -121,6 +193,43 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         </ul>
                     </div>
                 </section>
+
+                {(project.features || project.securityAndQuality || project.limitations) && (
+                    <section className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {project.features && (
+                            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
+                                <h3 className="text-white text-lg font-serif mb-4">V1 scope delivered</h3>
+                                <ul className="space-y-2">
+                                    {project.features.map((item) => (
+                                        <li key={item} className="text-white/75 leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {project.securityAndQuality && (
+                            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
+                                <h3 className="text-white text-lg font-serif mb-4">Security & quality</h3>
+                                <ul className="space-y-2">
+                                    {project.securityAndQuality.map((item) => (
+                                        <li key={item} className="text-white/75 leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {project.limitations && (
+                            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
+                                <h3 className="text-white text-lg font-serif mb-4">Current limits</h3>
+                                <ul className="space-y-2">
+                                    {project.limitations.map((item) => (
+                                        <li key={item} className="text-white/75 leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </section>
+                )}
             </article>
         </main>
     )

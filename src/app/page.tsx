@@ -10,9 +10,9 @@ import {
   useSpring,
   useTransform
 } from 'framer-motion'
+import { useSearchParams } from 'next/navigation'
 import { useLanguage } from '@/components/Language/LanguageProvider'
 import {
-  AUDIENCE_STORAGE_KEY,
   CONTACT_EMAIL,
   HERO_FRAMES,
   PROFILE_PHOTO_SRC,
@@ -20,6 +20,7 @@ import {
   getHomeCopy
 } from '@/components/Home/content'
 import type { Audience, ContactFormState } from '@/components/Home/types'
+import { useAudience } from '@/components/Audience/AudienceProvider'
 import { HeroSection } from '@/components/Home/sections/HeroSection'
 import { WorkSection } from '@/components/Home/sections/WorkSection'
 import { ProjectsSection } from '@/components/Home/sections/ProjectsSection'
@@ -37,11 +38,13 @@ type NavigatorWithConnection = Navigator & {
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null)
+  const appliedAudienceQueryRef = useRef<string | null>(null)
   const prefersReducedMotion = useReducedMotion()
   const shouldReduceMotion = Boolean(prefersReducedMotion)
+  const searchParams = useSearchParams()
   const { language } = useLanguage()
+  const { audience, setAudience } = useAudience()
 
-  const [audience, setAudience] = useState<Audience>('client')
   const [isLowDataMode, setIsLowDataMode] = useState(false)
   const [isProfilePhotoAvailable, setIsProfilePhotoAvailable] = useState(true)
   const [contactForm, setContactForm] = useState<ContactFormState>({
@@ -97,23 +100,20 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    try {
-      const storedAudience = window.localStorage.getItem(AUDIENCE_STORAGE_KEY)
-      if (storedAudience === 'client' || storedAudience === 'recruiter') {
-        setAudience(storedAudience)
-      }
-    } catch {
-      // Ignore storage access issues and keep default mode.
+    const audienceFromQuery = searchParams.get('audience')
+    if (
+      (audienceFromQuery === 'recruiter' || audienceFromQuery === 'client') &&
+      appliedAudienceQueryRef.current !== audienceFromQuery
+    ) {
+      setAudience(audienceFromQuery)
+      appliedAudienceQueryRef.current = audienceFromQuery
+      return
     }
-  }, [])
 
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(AUDIENCE_STORAGE_KEY, audience)
-    } catch {
-      // Ignore storage write issues.
+    if (!audienceFromQuery) {
+      appliedAudienceQueryRef.current = null
     }
-  }, [audience])
+  }, [searchParams, setAudience])
 
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: shouldReduceMotion ? 260 : 100,
