@@ -6,9 +6,14 @@ import Image from 'next/image'
 interface ProjectScreenshotsCarouselProps {
     title: string
     imageUrls: string[]
+    language?: 'en' | 'fr'
 }
 
-export const ProjectScreenshotsCarousel: React.FC<ProjectScreenshotsCarouselProps> = ({ title, imageUrls }) => {
+export const ProjectScreenshotsCarousel: React.FC<ProjectScreenshotsCarouselProps> = ({
+    title,
+    imageUrls,
+    language = 'en'
+}) => {
     const images = useMemo(() => imageUrls.filter(Boolean), [imageUrls])
     const [activeIndex, setActiveIndex] = useState(0)
 
@@ -22,7 +27,9 @@ export const ProjectScreenshotsCarousel: React.FC<ProjectScreenshotsCarouselProp
     return (
         <section className="mt-10 md:mt-14">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-white text-xl md:text-2xl font-serif">Project screenshots</h2>
+                <h2 className="text-white text-xl md:text-2xl font-serif">
+                    {language === 'fr' ? 'Captures du projet' : 'Project screenshots'}
+                </h2>
                 <p className="text-white/50 text-xs tracking-[0.14em] uppercase">
                     {activeIndex + 1} / {images.length}
                 </p>
