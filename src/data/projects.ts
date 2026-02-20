@@ -18,6 +18,7 @@ export interface PortfolioProject {
         summary: string
         monorepo: string[]
         runtime: string[]
+        mermaidDefinition?: string
         diagramImageUrl?: string
         diagramAlt?: string
         diagramPlaceholder: string
@@ -87,6 +88,14 @@ export const PORTFOLIO_PROJECTS: PortfolioProject[] = [
                 'Backend -> Google APIs (OAuth, YouTube, GA4)',
                 'Backend -> queue/cache services and PDF generation pipeline'
             ],
+            mermaidDefinition: `flowchart LR
+  U["User Browser"] --> F["Next.js Frontend (App Router)"]
+  F -->|"JWT cookie (httpOnly)"| B["NestJS Backend API"]
+  B --> P["PostgreSQL (Prisma)"]
+  B --> G["Google APIs (OAuth, YouTube Analytics, GA4 Data API)"]
+  B --> Q["In-memory Queue Service"]
+  B --> C["In-memory Cache Service"]
+  B --> R["/tmp PDF storage"]`,
             diagramPlaceholder: 'Architecture diagram placeholder. Add your schema image here.'
         },
         features: [
