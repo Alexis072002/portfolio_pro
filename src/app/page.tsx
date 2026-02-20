@@ -10,7 +10,6 @@ import {
   useSpring,
   useTransform
 } from 'framer-motion'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useLanguage } from '@/components/Language/LanguageProvider'
 import {
   CONTACT_EMAIL,
@@ -41,9 +40,6 @@ export default function Home() {
   const appliedAudienceQueryRef = useRef<string | null>(null)
   const prefersReducedMotion = useReducedMotion()
   const shouldReduceMotion = Boolean(prefersReducedMotion)
-  const pathname = usePathname()
-  const router = useRouter()
-  const searchParams = useSearchParams()
   const { language } = useLanguage()
   const { audience, setAudience } = useAudience()
 
@@ -102,20 +98,26 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const audienceFromQuery = searchParams.get('audience')
-    if (
-      (audienceFromQuery === 'recruiter' || audienceFromQuery === 'client') &&
-      appliedAudienceQueryRef.current !== audienceFromQuery
-    ) {
-      setAudience(audienceFromQuery)
-      appliedAudienceQueryRef.current = audienceFromQuery
-      return
+    const syncAudienceFromUrl = () => {
+      const audienceFromQuery = new URLSearchParams(window.location.search).get('audience')
+      if (
+        (audienceFromQuery === 'recruiter' || audienceFromQuery === 'client') &&
+        appliedAudienceQueryRef.current !== audienceFromQuery
+      ) {
+        setAudience(audienceFromQuery)
+        appliedAudienceQueryRef.current = audienceFromQuery
+        return
+      }
+
+      if (!audienceFromQuery) {
+        appliedAudienceQueryRef.current = null
+      }
     }
 
-    if (!audienceFromQuery) {
-      appliedAudienceQueryRef.current = null
-    }
-  }, [searchParams, setAudience])
+    syncAudienceFromUrl()
+    window.addEventListener('popstate', syncAudienceFromUrl)
+    return () => window.removeEventListener('popstate', syncAudienceFromUrl)
+  }, [setAudience])
 
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: shouldReduceMotion ? 260 : 100,
@@ -200,13 +202,13 @@ export default function Home() {
   )
 
   const syncAudienceToUrl = useCallback((nextAudience: Audience) => {
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(window.location.search)
     params.set('audience', nextAudience)
-    const hash = typeof window !== 'undefined' ? window.location.hash : ''
+    const hash = window.location.hash
     const queryString = params.toString()
-    const targetUrl = `${pathname}${queryString ? `?${queryString}` : ''}${hash}`
-    router.replace(targetUrl, { scroll: false })
-  }, [pathname, router, searchParams])
+    const targetUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`
+    window.history.replaceState(null, '', targetUrl)
+  }, [])
 
   const handleAudienceChange = (nextAudience: Audience) => {
     setAudience(nextAudience)
