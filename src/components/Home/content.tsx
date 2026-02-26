@@ -25,7 +25,7 @@ export const HERO_FRAMES = Array.from({ length: 80 }, (_, i) =>
   `/assets/hero/frames/Pushing_in_on_1080p_202602061407_${i.toString().padStart(3, '0')}.jpg`
 )
 
-export const PROFILE_PHOTO_SRC = '/assets/pictures/me.png'
+export const PROFILE_PHOTO_SRC = '/assets/pictures/me.jpeg'
 export const AUDIENCE_STORAGE_KEY = 'portfolio_audience_mode'
 export const CONTACT_EMAIL = 'alexis.dezeque@outlook.com'
 
@@ -181,7 +181,7 @@ const RECRUITER_HIGHLIGHTS_BY_LANGUAGE: Record<Language, RecruiterHighlightItem[
   en: [
     {
       title: 'Profile',
-      description: 'I am a junior frontend/full-stack JavaScript developer, targeting a full-time role with immediate frontend impact.'
+      description: 'I am a frontend/full-stack JavaScript developer, EPITECH graduate (RNCP level 5), focused on delivering immediate product impact.'
     },
     {
       title: 'Core skills',
@@ -195,7 +195,7 @@ const RECRUITER_HIGHLIGHTS_BY_LANGUAGE: Record<Language, RecruiterHighlightItem[
   fr: [
     {
       title: 'Présentation',
-      description: 'Je suis développeur junior frontend/full-stack JavaScript, en recherche d’un poste CDI avec impact rapide côté frontend.'
+      description: 'Je suis développeur frontend/full-stack JavaScript, diplômé d’EPITECH (RNCP niveau 5), avec un impact rapide sur les produits web.'
     },
     {
       title: 'Compétences clés',
@@ -210,13 +210,13 @@ const RECRUITER_HIGHLIGHTS_BY_LANGUAGE: Record<Language, RecruiterHighlightItem[
 
 const RECRUITER_FACTS_BY_LANGUAGE: Record<Language, RecruiterFactItem[]> = {
   en: [
-    { label: 'Role target', value: 'Full-time Frontend / Full-stack' },
-    { label: 'Level', value: 'Junior profile' },
+    { label: 'Role target', value: 'Frontend / Full-stack JavaScript opportunities' },
+    { label: 'Qualification', value: 'EPITECH graduate (RNCP level 5)' },
     { label: 'Availability', value: 'Available now' }
   ],
   fr: [
-    { label: 'Poste ciblé', value: 'CDI Frontend / Full-stack' },
-    { label: 'Niveau', value: 'Profil junior' },
+    { label: 'Poste ciblé', value: 'Opportunités JavaScript Frontend / Full-stack' },
+    { label: 'Formation', value: 'Diplômé d’EPITECH (RNCP niveau 5)' },
     { label: 'Disponibilité', value: 'Disponible maintenant' }
   ]
 }
@@ -264,7 +264,7 @@ const FAQ_RECRUITER_BY_LANGUAGE: Record<Language, FaqItem[]> = {
   en: [
     {
       q: 'What type of role are you currently looking for?',
-      a: 'I am looking for a full-time Frontend or Full-stack JavaScript role, with a strong focus on React and Next.js.'
+      a: 'I am open to Frontend or Full-stack JavaScript opportunities, with a strong focus on React and Next.js.'
     },
     {
       q: 'Which areas can you handle independently?',
@@ -282,7 +282,7 @@ const FAQ_RECRUITER_BY_LANGUAGE: Record<Language, FaqItem[]> = {
   fr: [
     {
       q: 'Quel type de poste recherchez-vous actuellement ?',
-      a: 'Je recherche un poste CDI Frontend ou Full-stack JavaScript, avec un fort focus React et Next.js.'
+      a: 'Je suis ouvert aux opportunités Frontend ou Full-stack JavaScript, avec un fort focus React et Next.js.'
     },
     {
       q: 'Quels périmètres pouvez-vous gérer en autonomie ?',
@@ -361,8 +361,8 @@ export const getHomeCopy = (language: Language, audience: Audience): HomeCopy =>
           ? "Portfolio conçu pour l'acquisition client et une exécution rapide."
           : 'Portfolio designed for client acquisition and fast execution.'
         : language === 'fr'
-          ? 'Je développe des applications web responsives et performantes, avec un focus sur l’expérience utilisateur et la qualité du code. Je recherche actuellement une opportunité en CDI pour concrétiser des idées créatives dans une équipe passionnée.'
-          : 'I craft responsive, high-performance web applications with a focus on user experience and clean code. I am currently looking for a full-time opportunity to bring creative ideas to life within a passionate team.',
+          ? 'Je développe des applications web responsives et performantes, avec un focus sur l’expérience utilisateur et la qualité du code. Je suis actuellement ouvert à de nouvelles opportunités professionnelles (CDD/CDI) pour concrétiser des idées créatives dans une équipe passionnée.'
+          : 'I craft responsive, high-performance web applications with a focus on user experience and clean code. I am currently open to new professional opportunities to bring creative ideas to life within a passionate team.',
     heroTitle:
       audience === 'client'
         ? language === 'fr'
@@ -417,16 +417,16 @@ export const getHomeCopy = (language: Language, audience: Audience): HomeCopy =>
           ? 'Offres ciblées, conçues pour l’acquisition et la conversion'
           : 'Lean service offers focused on acquisition and conversion'
         : language === 'fr'
-          ? 'Aperçu de mon profil junior pour un poste frontend/full-stack en CDI'
-          : 'Snapshot of my junior profile for a full-time frontend/full-stack role',
+          ? 'Aperçu de mon profil développeur frontend/full-stack'
+          : 'Snapshot of my frontend/full-stack developer profile',
     aboutEyebrow:
       audience === 'client'
         ? language === 'fr'
           ? 'Positionnement // Offre freelance'
           : 'Positioning // Freelance offer'
         : language === 'fr'
-          ? 'Positionnement // Candidature CDI'
-          : 'Positioning // Full-time application',
+          ? 'Positionnement // Opportunités Frontend & Full-stack'
+          : 'Positioning // Frontend & Full-stack opportunities',
     aboutTitle:
       audience === 'client'
         ? language === 'fr'
@@ -448,14 +448,14 @@ export const getHomeCopy = (language: Language, audience: Audience): HomeCopy =>
           ]
         : language === 'fr'
           ? [
-            'Je suis développeur junior frontend/full-stack JavaScript, avec un focus React/Next pour livrer des interfaces fiables et scalables.',
+            'Je suis développeur frontend/full-stack JavaScript, diplômé d’EPITECH (RNCP niveau 5), avec un focus React/Next pour livrer des interfaces fiables et scalables.',
             'Je développe au quotidien avec des assistants IA pour aller plus vite, tout en conservant la qualité du code et la maintenabilité.',
-            'Mon objectif est de rejoindre une équipe produit en CDI, contribuer rapidement sur le périmètre frontend, puis élargir vers plus de responsabilités full-stack.'
+            'Mon objectif est de rejoindre une équipe produit, contribuer rapidement sur le périmètre frontend, puis élargir vers plus de responsabilités full-stack.'
           ]
           : [
-            'I am a junior frontend/full-stack JavaScript developer, focused on React/Next to deliver reliable and scalable interfaces.',
+            'I am a frontend/full-stack JavaScript developer, EPITECH graduate (RNCP level 5), focused on React/Next to deliver reliable and scalable interfaces.',
             'I build daily with AI copilots and modern assistant tools to ship faster while keeping code quality and maintainability high.',
-            'My goal is to join a product team full-time, contribute quickly on frontend scope, and grow into broader full-stack ownership.'
+            'My goal is to join a product team, contribute quickly on frontend scope, and grow into broader full-stack ownership.'
           ],
     formDescription:
       audience === 'client'
